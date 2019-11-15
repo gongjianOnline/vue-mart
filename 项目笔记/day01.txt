@@ -1,3 +1,63 @@
-一、用户认证
-*认证令牌(JsonWebToken)
-*
+一、用户认证(上半场)
+*认证令牌(JsonWebToken) -以字符串性质的不能是中文
+
+*使用cube-UI
+    引入: vue add cube-ui
+
+*cli3.0创建自定义vue项目
+    https://www.cnblogs.com/mlllily/p/10898997.html
+
+*设置指定页面进行路由守卫(适用于电商项目)
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home
+  },
+  {
+    path:"/login",
+    name:"login",
+    component:Login
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/About.vue'),
+    meta:{
+      /**表示该页面是否需要验证 */
+      auth:true
+    }
+  }
+]
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+/**路由守卫 */
+router.beforeEach((to,from,next)=>{
+  //判断当前路由是否需要认证
+  if(to.meta.auth){
+    //引入vuex获取token,如果存在token则跳转值到本路由
+    if(store.state.token){ 
+      next()
+    }else{
+      //如果没有存在token则跳转至登录页,进行验证
+      next({
+        path:"/login",
+        query:{redirect:to.path}
+      })
+    }
+  }else{
+    //如果当前路由不需要认证token则跳转至本页面
+    next()
+  }
+})
+
+二、用户认证(下半场)
+*axios拦截器
+
+
+
+
+  

@@ -43,7 +43,7 @@ export default {
                         label:"密码",
                         props:{
                             type:"password",
-                            poaceholder:"请输入用户名",
+                            poaceholder:"请输入密码",
                             eye:{
                                 open:false
                             }
@@ -88,13 +88,21 @@ export default {
                     paw:this.model.password
                 }
             }).then((response)=>{
-                console.log(response);
                 //登录成功
                 if(response.data.code == 101){
                     //缓存值本地
                     localStorage.setItem("token",response.data.token);
                     //存入store
                     this.$store.commit("setToken",response.data.token);
+                    let toast = this.$createToast({
+                        time:2000,
+                        txt:'登录成功',
+                        type:'success'
+                    });
+                    toast.show()
+                    //登录成功后回调至该路由
+                    let {redirect} = this.$route.query || "/";
+                    this.$router.push(redirect)
                 }else{
                     //登录失败
                     let toast = this.$createToast({
@@ -104,11 +112,10 @@ export default {
                     });
                     toast.show()
                 }
-                
             })
         },
         handlevalidate(ret){
-            console.log("校验"+ret)
+
         }
     },
     components: {

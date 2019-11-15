@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token:'',
+    token:localStorage.getItem('token') || '',
   },
   mutations: {
     setToken(state,token){
@@ -14,6 +14,10 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: {
+  getters: {
+    isLogin:(state)=>{
+      //如果是空的就转换为booler值 false
+      return !!state.token
+    }
   }
 })

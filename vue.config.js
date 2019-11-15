@@ -1,4 +1,12 @@
 module.exports = {
+  //禁用语法监测
+  lintOnSave:false,
+  devServer:{
+    overlay:{
+      warning:false,
+      errors:false
+    }
+  },
   css: {
     loaderOptions: {
       stylus: {
@@ -28,22 +36,29 @@ module.exports = {
                     }
                 })
             })
-
-
+            /**登录接口模拟*/
             app.get('/api/login',function(req,res){
               const {name,paw} = req.query;
               if(name == "admin" && paw == "admin"){
                 res.json({
                     code:101,
-                    token:'冰山'
+                    token:'tokentest'
                 })
               }else{
                 res.json({
                     code:102
                 })
               }
-              
             })
+
+            /**注销登录测试 */
+            app.get('/api/logout',function(req,res){
+              res.json({
+                code:101
+              })
+            })
+
+            
         }
     }
 }

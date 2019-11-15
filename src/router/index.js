@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import store from '../store';
+import store from '../store/index.js';
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,10 +35,9 @@ const router = new VueRouter({
 
 /**路由守卫 */
 router.beforeEach((to,from,next)=>{
-  console.log(to,from,next);
   if(to.meta.auth){
     //需要认证,则检查令牌
-    if(store.state.tokem){ //已登录
+    if(store.state.token){ //已登录
       next()
     }else{
       //未登陆
@@ -50,7 +49,6 @@ router.beforeEach((to,from,next)=>{
   }else{
     next()
   }
-
 })
 
 
