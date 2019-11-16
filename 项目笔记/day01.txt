@@ -56,7 +56,8 @@ router.beforeEach((to,from,next)=>{
 
 二、用户认证(下半场)
 *axios拦截器
-
+  参考http-interceptor文件(前端axios拦截器)
+  参考vue.config.js文件(mock中间件)
 
 
 

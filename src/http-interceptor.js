@@ -44,8 +44,22 @@ axios.interceptors.response.use(
             }
         };
         return response;
-    },err=>{
-
+    },
+    err=>{
+        //如果未授权
+        if(err.response.status === 401){
+            //清空缓存
+            store.commit("setToken","");
+            localStorage.removeItem("token");
+            if(router.currentRoute.meta.auth){
+                router.push({
+                    path:"/login",
+                    query:{
+                        redirect:router.currentRoute.path
+                    }
+                })
+            }
+        }
     }
 );
 
