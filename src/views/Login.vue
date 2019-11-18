@@ -102,7 +102,7 @@ export default {
                     });
                     toast.show()
                     //登录成功后回调至该路由
-                    let {redirect} = this.$route.query || "/";
+                    let redirect = this.$route.query.redirect || "/";
                     this.$router.push(redirect)
                 }else{
                     //登录失败
