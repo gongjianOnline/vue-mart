@@ -54,7 +54,7 @@ module.exports = {
             /**注销登录测试 */
             app.get('/api/logout',function(req,res){
               res.json({
-                code:101
+                code:-1
               })
             })
 

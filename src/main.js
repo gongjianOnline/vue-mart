@@ -2,7 +2,7 @@ import Vue from 'vue'
 import './cube-ui'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/index.js'
 import axios from "axios"
 //导入axios拦截器
 import interceptor from './http-interceptor'

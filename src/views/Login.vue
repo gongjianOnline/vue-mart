@@ -91,6 +91,7 @@ export default {
                 //登录成功
                 if(response.data.code == 101){
                     //缓存值本地
+                    localStorage.setItem("test","为什么localtorage会存不上");
                     localStorage.setItem("token",response.data.token);
                     //存入store
                     this.$store.commit("setToken",response.data.token);

@@ -15,6 +15,9 @@ export default {
     HelloWorld
   },
   mounted() {
+  console.log("测试持久化存储")
+  console.log(localStorage.getItem('test'))
+  console.log(localStorage.getItem('token'))
 	/**验证axios拦截器是否生效 */
 	console.log("拦截器测试")
     this.$http({
