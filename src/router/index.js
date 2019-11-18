@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import store from '../store/index.js';
+import store from '../store/index.js'
+import Cart from "../views/cart.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,6 +16,11 @@ const routes = [
     path:"/login",
     name:"login",
     component:Login
+  },
+  {
+    path:"/cart",
+    name:"cart",
+    component:Cart
   },
   {
     path: '/about',

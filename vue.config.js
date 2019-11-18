@@ -31,6 +31,9 @@ module.exports = {
             app.use(function(req,res,next){
               //检查token
               if(/^\/api/.test(req.path)){ //只校验/api开头的请求
+                 // 之校验/api开头的请求
+                console.log(req.method + " " + req.path);
+                console.log("token:" + req.headers.token);
                 if(req.path == '/api/login' || req.headers.token){
                   next()
                 } else{

@@ -7,8 +7,11 @@
 import axios from "axios"
 import store from "./store/index"
 import router from "./router";
+
 /**请求的拦截器 */
 axios.interceptors.request.use(config => {
+    console.log("请求拦截器测试")
+    console.log(store.state.token);
     if (store.state.token) {
       // 若存在令牌，则放入请求头
       config.headers.token = store.state.token;
@@ -30,8 +33,6 @@ axios.interceptors.response.use(
                 //清空缓存
                 store.commit("setToken","");
                 localStorage.removeItem('token');
-                //跳转值登录页
-                if(router.currentRoute.meta.auth){
                     router.push({
                         path:'/login',
                         //获取当前的路由地址
@@ -39,7 +40,6 @@ axios.interceptors.response.use(
                             redirect:router.currentRoute.path
                         }
                     })
-                }
                 
             }
         };
