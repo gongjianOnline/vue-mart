@@ -29,7 +29,7 @@ axios.interceptors.response.use(
         //此时需要重新登录,并且清楚本地的缓存信息
         if(response.status == 200){
             let data= response.data;
-            if(data.code == 101){
+            if(data.code == -1){
                 //清空缓存
                 store.commit("setToken","");
                 localStorage.removeItem('token');

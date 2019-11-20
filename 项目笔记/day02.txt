@@ -1,2 +1,36 @@
 一、Vue动画设计
+    html部分
+        用vue动画标签嵌套视图,命名router-move
+    <transition name="route-move">
+      <router-view class="child-view"></router-view>  
+    </transition> 
     
+    css部分
+    /* 页面的滑动动画(vue动画设计)*/
+    /* 入场前 */
+    .route-move-enter{
+    transform: translate3d(-100%,0,0)
+    }
+    /* 出场后 */
+    .route-move-leave-to{
+    transform: translate3d(100%,0,0)
+    }
+    .route-move-enter-active,
+    .route-move-leave-active{
+    transition: transform 0.3s
+    } 
+
+二、路由切换菜单栏状态
+    selectLabel:"/" //默认菜单栏选中的栏目
+    /*可以通过监听路由变化,将路由地址赋值给selectLabel更新选中的状态*/
+    watch:{ 
+      //路由发生变化时,tabs样式同步
+      $route(route) {
+        this.selectLabel = route.path;
+      }
+    },
+    /*也可以在初始化的时候获取路由地址赋值给selectLabel更新选中的状态*/
+    created(){
+      //初始化页签的设置(解决页面刷新和路由跳转的导航选中问题)
+      this.selectLabel = this.$route.path;
+    },

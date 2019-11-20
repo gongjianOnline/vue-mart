@@ -98,7 +98,7 @@
 .cube-tab-bar-slider{
   top:0
 }
-/* 页面的滑动动画 */
+/* 页面的滑动动画(vue动画设计)*/
 /* 入场前 */
 .route-move-enter{
   transform: translate3d(-100%,0,0)
