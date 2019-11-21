@@ -2,22 +2,30 @@
     <div class="home">
         <!-- 轮播图 -->
         <cube-slide :data="slider" :interval="5000">
-            <cute-slide-item v-for="(item) in slider" :key="item.id">
+            <cube-slide-item v-for="(item) in slider" :key="item.id">
                 <router-link :to="`/detail/${item.id}`"> 
-                    <img :src="item.img" alt="" class="slider">
+                    <img :src="item.img"  class="">
                 </router-link>
-            </cute-slide-item>
+            </cube-slide-item>
         </cube-slide>
+
+        <!-- 商品列表 -->
+        <goods-list >
+
+        </goods-list>
+
+
     </div>
 </template>
 
 <script>
 import HelloWorld from "@/components/HelloWorld.vue";
-
+import GoodsList from "@/components/GoodsList.vue"
 export default {
     name: "home",
     components: {
-        HelloWorld
+        HelloWorld,
+        GoodsList
     },
     data(){
         return{
@@ -34,9 +42,20 @@ export default {
             url: "/api/goods"
         }).then((response) => {
             console.log(response.data);
-            // this.slider = response.slider;
+            let res = response.data;
+            this.slider = res.slider;
+
+            console.log(this.slider)
         });
 
     }
 };
 </script>
+<style scoped>
+.cube-slide{
+    height: auto
+}
+.cube-slide-item > a > img{
+    width: 100%
+} 
+</style>
